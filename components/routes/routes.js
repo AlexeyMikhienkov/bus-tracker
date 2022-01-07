@@ -1,39 +1,37 @@
-import {busesTableHeader, busStatus} from "../../constants/constants";
+import {routesTableHeader} from "../../constants/constants";
+import {checkBusSufficiency} from "../../constants/copyright";
 
-export default function Buses({buses, className}) {
+export default function Routes({routes, className, onCheckSufficiency}) {
     return (
-        <div className={`${className} buses`}>
-            <table className={"buses__table table"}>
+        <div className={`${className} routes`}>
+            <table className={"routes__table table"}>
                 <thead>
                 <tr className={"table__row"}>
                     {
-                        busesTableHeader.map(header => {
+                        routesTableHeader.map(header => {
                             return <th key={header} className={"table__header"}>{header}</th>
                         })
                     }
+                    <th />
                 </tr>
                 </thead>
                 <tbody>
                 {
-                    buses.map((bus, index) => {
+                    routes.map((route, index) => {
                         return (
                             <tr key={index} className={`table__row ${!(index % 2) ? "table__row_even" : ""}`}>
                                 <>
                                     <td className={"table__cell"}>
-                                        <p className={"table__item"}>{bus.number}</p>
+                                        <p className={"table__item"}>{route.number}</p>
                                     </td>
                                     <td className={"table__cell"}>
-                                        <p className={"table__item"}>{`${bus.driverLastName} ${bus.driverFirstName}`}</p>
+                                        <p className={"table__item"}>{route.distance}</p>
                                     </td>
                                     <td className={"table__cell"}>
-                                        <p className={"table__item"}>{bus.fuelPerKm}</p>
+                                        <p className={"table__item"}>{route.needBusCount}</p>
                                     </td>
                                     <td className={"table__cell"}>
-                                        {
-                                            bus.routeId !== null ?
-                                                <p className={"table__item"}>{`${busStatus.onRoute} ${bus.routeId}`}</p> :
-                                                <p className={"table__item"}>{`${busStatus.inPark}`}</p>
-                                        }
+                                        <button className={"table__item"} onClick={() => onCheckSufficiency(route.id)}>{checkBusSufficiency}</button>
                                     </td>
                                 </>
                             </tr>

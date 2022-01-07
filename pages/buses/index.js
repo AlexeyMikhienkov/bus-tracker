@@ -1,13 +1,12 @@
 import {getWithParams} from "../../utils/requests";
 import {useState} from "react";
 import Wrapper from "../../components/wrapper/wrapper";
+import Buses from "../../components/buses/buses";
 
 export default function BusesPage({buses}) {
-    const [buses, setBuses] = useState(buses);
-
     return (
         <Wrapper>
-            <Buses />
+            <Buses buses={buses} className={"wrapper__buses"} />
         </Wrapper>
     )
 
