@@ -1,0 +1,1 @@
+export const dropFromRouteText = "Вернуть в парк";
