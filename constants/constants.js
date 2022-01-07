@@ -15,3 +15,22 @@ export const busStatus = {
     inPark: "В парке",
     onRoute: "На маршруте"
 }
+
+export const busFormFields = [
+    {
+        title: "driverFirstName",
+        text: "Имя водителя*"
+    },
+    {
+        title: "driverLastName",
+        text: "Фамилия водителя*"
+    },
+    {
+        title: "fuelPerKm",
+        text: "Расход топлива на км*"
+    },
+    {
+        title: "number",
+        text: "Марка автобуса*"
+    }
+]

@@ -2,6 +2,16 @@ import axios from "axios";
 
 const API_URL = 'http://localhost:8080'
 
+export function put(endpoint, data = {}, headers = {}) {
+    const config = {
+        headers: {
+            ...headers,
+        }
+    }
+
+    return axios.put(API_URL + endpoint, data, config)
+}
+
 export function post(endpoint, data = {}, headers = {}) {
     const config = {
         headers: {

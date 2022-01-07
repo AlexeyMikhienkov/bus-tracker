@@ -1,8 +1,18 @@
 import {busesTableHeader, busStatus} from "../../constants/constants";
+import {addBusText} from "../../constants/copyright";
+import {useRouter} from "next/router";
 
 export default function Buses({buses, className}) {
+    const router = useRouter();
+
     return (
         <div className={`${className} buses`}>
+
+            <div className={"buses__add-bus-button-container"}>
+                <button onClick={() => router.push('/buses/create')}>{addBusText}</button>
+            </div>
+
+
             <table className={"buses__table table"}>
                 <thead>
                 <tr className={"table__row"}>

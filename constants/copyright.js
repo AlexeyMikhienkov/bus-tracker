@@ -6,3 +6,11 @@ export const checkBusSufficiency = "Проверить достаточност�
 
 export const currentBusCountText = "Текущее количество автобусов:";
 export const needBusCountText = "Необходимое количество автобусов:";
+
+export const addBusText = "Добавить автобус";
+export const addRouteText = "Добавить маршрут";
+
+export const typeData = "Заполните поля для ввода";
+
+export const busCreatedSuccessful = "Автобус успешно добавлен";
+export const routeCreatedSuccessful = "Маршрут успешно добавлен";
