@@ -1,11 +1,24 @@
 import {routesTableHeader} from "../../constants/constants";
-import {checkBusSufficiency, currentBusCountText, needBusCountText} from "../../constants/copyright";
+import {
+    addRouteText,
+    checkBusSufficiency,
+    currentBusCountText,
+    needBusCountText
+} from "../../constants/copyright";
+import {useRouter} from "next/router";
 
 export default function Routes({routes, className, busSufficiency, onCheckSufficiency, checkingRouteId}) {
     const {busCount, needBusCount} = busSufficiency;
 
+    const router = useRouter();
+
     return (
         <div className={`${className} routes`}>
+
+            <div className={"routes__add-route-button-container"}>
+                <button onClick={() => router.push('/routes/create')}>{addRouteText}</button>
+            </div>
+
             <table className={"routes__table table"}>
                 <thead>
                 <tr className={"table__row"}>
