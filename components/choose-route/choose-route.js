@@ -34,20 +34,3 @@ export default function ChooseRoute({routes, bus, onSetRoute, className}) {
         </div>
     )
 }
-
-/*
-
-                          <select className={"form__select"} disabled={!filterParam.length}
-                                    value={filterParam === "genre" ? currentGenre : currentWriter}
-                                    onChange={event => {
-                                        filterParam === "genre" ?
-                                            setCurrentGenre(event.target.value) :
-                                            setCurrentWriter(event.target.value)
-                                    }}>
-
-                                    currentServerParams.map(param => {
-                                        return <option key={param}
-                                                       value={param}>
-                                            {filterParam === "genre" ? genres[param] : param}</option>
-                                    })
- */

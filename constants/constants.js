@@ -11,6 +11,10 @@ export const routesTableHeader = [
   "Номер маршрута", "Протяженность", "Необходимое число автобусов"
 ];
 
+export const checkFuelTableHeader = [
+    "Номер маршрута", "Протяженность", "Расход топлива на маршруте"
+]
+
 export const busStatus = {
     inPark: "В парке",
     onRoute: "На маршруте"

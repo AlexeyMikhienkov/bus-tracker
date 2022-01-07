@@ -2,12 +2,12 @@ import {routesTableHeader} from "../../constants/constants";
 import {
     addRouteText,
     checkBusSufficiency,
-    currentBusCountText,
+    currentBusCountText, deleteRouteText,
     needBusCountText
 } from "../../constants/copyright";
 import {useRouter} from "next/router";
 
-export default function Routes({routes, className, busSufficiency, onCheckSufficiency, checkingRouteId}) {
+export default function Routes({routes, className, busSufficiency, onCheckSufficiency, checkingRouteId, onDeleteRoute}) {
     const {busCount, needBusCount} = busSufficiency;
 
     const router = useRouter();
@@ -49,6 +49,10 @@ export default function Routes({routes, className, busSufficiency, onCheckSuffic
                                         <td className={"table__cell"}>
                                             <button className={"table__item"}
                                                     onClick={() => onCheckSufficiency(route.id)}>{checkBusSufficiency}</button>
+                                        </td>
+                                        <td className={"table__cell"}>
+                                            <button className={"table__item"}
+                                                    onClick={() => onDeleteRoute(route.id)}>{deleteRouteText}</button>
                                         </td>
                                     </>
                                 </tr>

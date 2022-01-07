@@ -1,12 +1,15 @@
 import {busesTableHeader, busStatus} from "../../constants/constants";
-import {addBusText} from "../../constants/copyright";
+import {addBusText, deleteBusText} from "../../constants/copyright";
 import {useRouter} from "next/router";
+import SearchForm from "../../pages/buses/search-form";
 
-export default function Buses({buses, className}) {
+export default function Buses({buses, className, onDeleteBus, onSearchByLastName}) {
     const router = useRouter();
 
     return (
         <div className={`${className} buses`}>
+
+            <SearchForm onSearchByLastName={onSearchByLastName} />
 
             <div className={"buses__add-bus-button-container"}>
                 <button onClick={() => router.push('/buses/create')}>{addBusText}</button>
@@ -44,6 +47,9 @@ export default function Buses({buses, className}) {
                                                 <p className={"table__item"}>{`${busStatus.onRoute} ${bus.routeId}`}</p> :
                                                 <p className={"table__item"}>{`${busStatus.inPark}`}</p>
                                         }
+                                    </td>
+                                    <td className={"table__cell"}>
+                                        <button onClick={() => onDeleteBus(bus.id)}>{deleteBusText}</button>
                                     </td>
                                 </>
                             </tr>
