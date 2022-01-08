@@ -1,0 +1,46 @@
+$table-back-color: #fbece7;
+$table-back-color-even: #f8d8cd;
+$table-border-color: #cda687;
+$font-color: #44696e;
+
+.table {
+  width: 100%;
+
+  border: 2px solid $table-border-color;
+  border-spacing: 0;
+
+  color: $font-color;
+  font-family: Tahoma, sans-serif;
+
+  &__header {
+    height: 50px;
+
+    font-size: 14px;
+
+    background-color: $table-back-color-even;
+  }
+
+  &__row {
+    background-color: $table-back-color;
+
+    &:nth-child(2n) {
+      background-color: $table-back-color-even;
+    }
+  }
+
+  &__cell {
+    text-align: center;
+    vertical-align: center;
+  }
+
+  &__button {
+    padding: 0;
+
+    height: 60px;
+
+    border: 2px solid $font-color;
+    background-color: #a7d496;
+
+    font-family: Tahoma, sans-serif;
+  }
+}
