@@ -1,8 +1,26 @@
-import {chooseRouteText} from "../../constants/copyright";
+import {addBusText, chooseRouteText} from "../../constants/copyright";
 import {useRouter} from "next/router";
+import SearchForm from "../search-form/search-form";
+import AddButton from "../add-button/add-button";
+import BusesTableHeader from "../buses-table/buses-table-header";
+import {busesTableHeader} from "../../constants/constants";
+import BusesTableBody from "../buses-table/buses-table-body";
 
-export default function InPark({buses, className}) {
+export default function InPark({buses, className, onSearchByLastName}) {
     const router = useRouter();
+
+    return (
+        <div className={`${className} buses`}>
+
+            <SearchForm className={"buses"} onSearchByParam={onSearchByLastName} />
+
+            <table className={"buses__table table"}>
+                <BusesTableHeader header={busesTableHeader} />
+                <BusesTableBody busesArray={buses} type={"autoPark"} />
+            </table>
+        </div>
+    )
+
 
     return (
         <div className={`${className} in-park`}>

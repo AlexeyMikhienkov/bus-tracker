@@ -7,6 +7,10 @@ export const busesTableHeader = [
     "Марка автобуса", "Водитель", "Расход топлива", "Статус"
 ];
 
+export const autoParkTableHeader = [
+    "Марка автобуса", "Водитель", "Расход топлива"
+];
+
 export const routesTableHeader = [
     "Номер маршрута", "Длина маршрута", "Необходимое число автобусов"
 ];
@@ -79,5 +83,6 @@ export const menuContentTitles = {
 
 export const headers = {
     routes: "Маршруты",
-    buses: "Автобусы"
+    buses: "Автобусы",
+    autoPark: "Автопарк",
 }
