@@ -1,18 +1,18 @@
-import {dropFromRouteText} from "../../constants/copyright";
+import SearchForm from "../search-form/search-form";
+import BusesTableHeader from "../buses-table/buses-table-header";
+import {busesTableHeader} from "../../constants/constants";
+import BusesTableBody from "../buses-table/buses-table-body";
 
-export default function OnRoute({buses, onDropRoute, className}) {
+export default function OnRoute({buses, onSearchByLastName, className, onDropRoute}) {
     return (
-        <div className={`${className} on-route`}>
-            {
-                buses.map(bus => {
-                    return (
-                        <>
-                            <p>{`id: ${bus.id}, route: ${bus.routeId}, driver: ${bus.driverLastName}`}</p>
-                            <button onClick={() => onDropRoute(bus.id)}>{dropFromRouteText}</button>
-                        </>
-                    )
-                })
-            }
+        <div className={`${className} buses`}>
+
+            <SearchForm className={"buses"} onSearchByParam={onSearchByLastName} />
+
+            <table className={"buses__table table"}>
+                <BusesTableHeader header={busesTableHeader} />
+                <BusesTableBody busesArray={buses} type={"onRoute"} onAction={onDropRoute} />
+            </table>
         </div>
     )
 

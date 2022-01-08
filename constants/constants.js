@@ -85,4 +85,5 @@ export const headers = {
     routes: "Маршруты",
     buses: "Автобусы",
     autoPark: "Автопарк",
+    onRoute: "На маршруте"
 }

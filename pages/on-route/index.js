@@ -2,6 +2,8 @@ import {getWithParams, postWithParams} from "../../utils/requests";
 import {useEffect, useState} from "react";
 import Wrapper from "../../components/wrapper/wrapper";
 import OnRoute from "../../components/on-route/on-route";
+import Header from "../../components/header/header";
+import {headers} from "../../constants/constants";
 
 export default function BusesOnRoute({buses: serverBuses}) {
     const [buses, setBuses] = useState(serverBuses);
@@ -13,8 +15,16 @@ export default function BusesOnRoute({buses: serverBuses}) {
         setBusesOnRoute(onRoute);
     }, [buses])
 
+    function searchByLastName(lastName) {
+        if (lastName)
+            getWithParams('/bus/filter', {driverLastNameStartWith: lastName})
+                .then(res => setBuses(res.data))
+                .catch(({response}) => console.log(response));
+        else
+            setBuses(serverBuses);
+    }
+
     function dropRoute(busId) {
-        //TODO: обработать удаление автобуса с маршрута
         const params = {
             busId
         }
@@ -31,7 +41,9 @@ export default function BusesOnRoute({buses: serverBuses}) {
 
     return (
         <Wrapper>
-            <OnRoute buses={busesOnRoute} onDropRoute={dropRoute} className={'wrapper__on-route'} />
+            <Header headerTitle={headers.onRoute} />
+            <OnRoute buses={busesOnRoute} onSearchByLastName={searchByLastName} onDropRoute={dropRoute}
+                     className={'wrapper__on-route'} />
         </Wrapper>
     )
 }

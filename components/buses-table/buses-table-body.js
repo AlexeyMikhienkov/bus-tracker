@@ -1,9 +1,15 @@
 import {busStatus} from "../../constants/constants";
-import {chooseRouteText, deleteBusText} from "../../constants/copyright";
+import {chooseRouteText, deleteBusText, dropFromRouteText} from "../../constants/copyright";
 import {useRouter} from "next/router";
 
 export default function BusesTableBody({busesArray, onAction, type}) {
     const router = useRouter();
+
+    const tableButtonText = {
+        all: deleteBusText,
+        autoPark: chooseRouteText,
+        onRoute: dropFromRouteText
+    }
 
     return (
         <tbody>
@@ -33,17 +39,18 @@ export default function BusesTableBody({busesArray, onAction, type}) {
                                         </td>
                                         <td className={"table__cell"}>
                                             <button className={"table__button"}
-                                                    onClick={() => onAction(bus.id)}>{deleteBusText}
+                                                    onClick={() => onAction(bus.id)}>{tableButtonText[type]}
                                             </button>
                                         </td>
                                     </> :
                                     <td className={"table__cell"}>
                                         <button className={"table__button"}
-                                                onClick={() => router.push(`/choose-route/${bus.id}`)}>
-                                            {chooseRouteText}
+                                                onClick={type === "autoPark" ?
+                                                    () => router.push(`/choose-route/${bus.id}`) :
+                                                    () => onAction(bus.id)}>
+                                            {tableButtonText[type]}
                                         </button>
                                     </td>
-
                             }
                         </>
                     </tr>
