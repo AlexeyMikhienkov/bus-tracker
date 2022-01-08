@@ -2,6 +2,9 @@ import {del, getWithParams} from "../../utils/requests";
 import Wrapper from "../../components/wrapper/wrapper";
 import Buses from "../../components/buses/buses";
 import {useState} from "react";
+import Header from "../../components/header/header";
+import {busesHeader} from "../../constants/copyright";
+import {headers} from "../../constants/constants";
 
 export default function BusesPage({buses: serverBuses}) {
     const [buses, setBuses] = useState(serverBuses);
@@ -28,6 +31,7 @@ export default function BusesPage({buses: serverBuses}) {
 
     return (
         <Wrapper>
+            <Header headerTitle={headers.buses} />
             <Buses buses={buses} className={"wrapper__buses"} onDeleteBus={deleteBus}
                    onSearchByLastName={searchByLastName}/>
         </Wrapper>

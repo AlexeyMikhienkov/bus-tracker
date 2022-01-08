@@ -25,5 +25,3 @@ export const totalConsumptions = "Общие затраты топлива: "
 
 export const menuTitle = "ГЛАВНОЕ МЕНЮ";
 export const altTextBack = "Назад";
-
-export const routesHeader = "Маршруты";

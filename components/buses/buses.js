@@ -1,20 +1,14 @@
 import {busesTableHeader, busStatus} from "../../constants/constants";
 import {addBusText, deleteBusText} from "../../constants/copyright";
-import {useRouter} from "next/router";
-import SearchForm from "../../pages/buses/search-form";
+import SearchForm from "../search-form/search-form";
+import AddButton from "../add-button/add-button";
 
 export default function Buses({buses, className, onDeleteBus, onSearchByLastName}) {
-    const router = useRouter();
-
     return (
         <div className={`${className} buses`}>
 
-            <SearchForm onSearchByLastName={onSearchByLastName} />
-
-            <div className={"buses__add-bus-button-container"}>
-                <button onClick={() => router.push('/buses/create')}>{addBusText}</button>
-            </div>
-
+            <SearchForm className={"buses"} onSearchByParam={onSearchByLastName} />
+            <AddButton text={addBusText} path={'/buses/create'} />
 
             <table className={"buses__table table"}>
                 <thead>
@@ -24,6 +18,7 @@ export default function Buses({buses, className, onDeleteBus, onSearchByLastName
                             return <th key={header} className={"table__header"}>{header}</th>
                         })
                     }
+                    <th className={"table__header"}/>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,7 +44,9 @@ export default function Buses({buses, className, onDeleteBus, onSearchByLastName
                                         }
                                     </td>
                                     <td className={"table__cell"}>
-                                        <button onClick={() => onDeleteBus(bus.id)}>{deleteBusText}</button>
+                                        <button className={"table__button"}
+                                                onClick={() => onDeleteBus(bus.id)}>{deleteBusText}
+                                        </button>
                                     </td>
                                 </>
                             </tr>

@@ -17,7 +17,7 @@ export const checkFuelTableHeader = [
 
 export const busStatus = {
     inPark: "В парке",
-    onRoute: "На маршруте"
+    onRoute: "Маршрут"
 };
 
 export const busFormFields = [
@@ -75,4 +75,9 @@ export const menuContentTitles = {
         title: "Затраты бензина",
         path: "/check-fuel"
     }
+}
+
+export const headers = {
+    routes: "Маршруты",
+    buses: "Автобусы"
 }

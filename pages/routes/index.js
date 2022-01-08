@@ -3,7 +3,7 @@ import {del, getWithParams} from "../../utils/requests";
 import Routes from "../../components/routes/routes";
 import {useState} from "react";
 import Header from "../../components/header/header";
-import {routesHeader} from "../../constants/copyright";
+import {headers} from "../../constants/constants";
 
 export default function RoutesPage({routes: serverRoutes}) {
     const [busSufficiency, setBusSufficiency] = useState({});
@@ -39,7 +39,7 @@ export default function RoutesPage({routes: serverRoutes}) {
 
     return (
         <Wrapper>
-            <Header headerTitle={routesHeader} />
+            <Header headerTitle={headers.routes} />
                 <Routes routes={routes} className={"wrapper__routes"} busSufficiency={busSufficiency}
                         onDeleteRoute={deleteRoute} checkingRouteId={checkingRouteId}
                         onCheckSufficiency={checkSufficiency}/>

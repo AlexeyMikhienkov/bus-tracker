@@ -1,6 +1,7 @@
 import {addRouteText,} from "../../constants/copyright";
 import {useRouter} from "next/router";
 import RoutesTable from "../routes-table/routes-table";
+import AddButton from "../add-button/add-button";
 
 export default function Routes({
                                    routes,
@@ -15,11 +16,7 @@ export default function Routes({
     return (
         <div className={`${className} routes`}>
 
-            <div className={"routes__add-route-button-container"}>
-                <button className={"routes__add-route-button"}
-                        onClick={() => router.push('/routes/create')}>{addRouteText}
-                </button>
-            </div>
+            <AddButton text={addRouteText} path={'/routes/create'} />
 
             <RoutesTable routes={routes} busSufficiency={busSufficiency} onCheckSufficiency={onCheckSufficiency}
                          checkingRouteId={checkingRouteId} onDeleteRoute={onDeleteRoute}/>
