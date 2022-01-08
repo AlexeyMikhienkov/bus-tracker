@@ -7,9 +7,9 @@ export default function CheckFuel({className, consumptions}) {
     return (
         <div className={`${className} check-fuel`}>
             <div className={"check-fuel__text-container"}>
-                <p className={"check-fuel__text"}>{`${totalConsumptions} ${total}`}</p>
+                <p className={"check-fuel__text"}>{`${totalConsumptions} ${total.toFixed(2)}`}</p>
             </div>
-            <table>
+            <table className={"check-fuel__table table"}>
                 <thead>
                 {
                     checkFuelTableHeader.map(header => {
@@ -31,7 +31,7 @@ export default function CheckFuel({className, consumptions}) {
                                     <p className={"table__item"}>{route.distance}</p>
                                 </td>
                                 <td className={"table__cell"}>
-                                    <p className={"table__item"}>{consumption}</p>
+                                    <p className={"table__item"}>{consumption.toFixed(2)}</p>
                                 </td>
                             </tr>
                         )

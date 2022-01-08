@@ -1,6 +1,6 @@
 import {routesTableHeader} from "../../constants/constants";
 
-export default function RoutesTableHead() {
+export default function RoutesTableHeader() {
     return (
         <thead>
         <tr className={"table__row"}>

@@ -31,10 +31,13 @@ $font-color: #44696e;
   &__cell {
     text-align: center;
     vertical-align: center;
+
+    padding: 0;
   }
 
   &__button {
     padding: 0;
+    width: 90%;
 
     border: 2px solid $font-color;
     border-radius: 5px;
