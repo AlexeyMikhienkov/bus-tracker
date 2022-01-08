@@ -1,6 +1,7 @@
 import {useState} from "react";
-import {addBusText, busCreatedSuccessful, typeData} from "../../constants/copyright";
+import {addBusText, busCreatedSuccessful, routeCreatedSuccessful} from "../../constants/copyright";
 import {busFormFields} from "../../constants/constants";
+import FormField from "../form-field/form-field";
 
 export default function CreateBus({onCreateBus, errors, className, clicked}) {
     const [driverFirstName, setDriverFirstName] = useState('');
@@ -14,78 +15,34 @@ export default function CreateBus({onCreateBus, errors, className, clicked}) {
         onCreateBus(driverFirstName, driverLastName, fuelPerKm, number);
     }
 
-    function titleToState(propTitle) {
-        switch (propTitle.toString()) {
-            case "driverFirstName":
-                return driverFirstName;
-            case "driverLastName":
-                return driverLastName;
-            case "fuelPerKm":
-                return fuelPerKm;
-            case "number":
-                return number;
-            default:
-                return;
-        }
-    }
-
-    function titleToSetter(propTitle) {
-        switch (propTitle.toString()) {
-            case "driverFirstName":
-                return setDriverFirstName;
-            case "driverLastName":
-                return setDriverLastName;
-            case "fuelPerKm":
-                return setFuelPerKm;
-            case "number":
-                return setNumber;
-            default:
-                return;
-        }
-    }
-
     return (
-        <>
-            <div className={`${className} create-bus`}>
-                <h3 className={"create-bus__text"}>{typeData}</h3>
-                <form className={"create-bus__form form"} onSubmit={handleSubmit}>
-                    {busFormFields.map(fieldObj => {
-                        const {title, text} = fieldObj;
+        <div className={`${className} create-bus`}>
+            <form className={"create-bus__form form"} onSubmit={handleSubmit}>
+                <FormField param={driverFirstName} onSetParam={setDriverFirstName}
+                           fieldObj={busFormFields.driverFirstName}/>
+                <FormField param={driverLastName} onSetParam={setDriverLastName}
+                           fieldObj={busFormFields.driverLastName}/>
+                <FormField param={fuelPerKm} onSetParam={setFuelPerKm} fieldObj={busFormFields.fuelPerKm}/>
+                <FormField param={number} onSetParam={setNumber} fieldObj={busFormFields.number}/>
 
-                        let errorObj;
-
-                        if (Object.keys(errors).length)
-                            errorObj = errors?.find(error => error.field === title)
-
-                        return (
-                            <div className={"form__field"} key={title}>
-                                <label className={"form__label"} htmlFor={title}>{text}</label><br/>
-                                {
-                                    <input className={"form__input"} type={"text"} id={title}
-                                           value={titleToState(title)}
-                                           onChange={event => {
-                                               const func = titleToSetter(title);
-
-                                               if (typeof func === "function")
-                                                   func(event.target.value)
-                                           }}/>
-                                }
-                                <br/>
-                                <p className={"form__error-message"}>{errorObj?.message}</p>
-                            </div>
-                        )
-                    })}
-
-                    <div className={"form__footer"}>
-                        <button className={"form__button"} type={"submit"}>{addBusText}</button>
-                        {
-                            !Object.keys(errors).length && clicked ?
-                                <p className={"form__success-message"}>{busCreatedSuccessful}</p> : null
-                        }
-                    </div>
-                </form>
+                <div className={"form__footer"}>
+                    <button className={"form__button"} type={"submit"}>{addBusText}</button>
+                </div>
+            </form>
+            <div className={"create-bus__response"}>
+                {
+                    !Object.keys(errors).length && clicked ?
+                        <p className={"create-bus__success-message"}>{busCreatedSuccessful}</p> :
+                        null
+                }
+                {
+                    Object.keys(errors).length ?
+                        errors.map(error => {
+                            return <p key={error.message} className={"create-bus__error-message"}>{error.message}</p>
+                        })
+                        : null
+                }
             </div>
-        </>
+        </div>
     )
-
 }

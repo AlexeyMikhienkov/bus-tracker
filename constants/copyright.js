@@ -19,7 +19,7 @@ export const busCreatedSuccessful = "Автобус успешно добавл�
 export const routeCreatedSuccessful = "Маршрут успешно добавлен";
 
 export const search = "Найти";
-export const searchPlaceholder = "Введите фамилию водителя";
+export const searchPlaceholder = "Введите фамилию водителя...";
 
 export const totalConsumptions = "Общие затраты топлива: "
 

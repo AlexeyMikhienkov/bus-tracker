@@ -28,39 +28,39 @@ export const busStatus = {
     onRoute: "Маршрут"
 };
 
-export const busFormFields = [
-    {
+export const busFormFields = {
+    driverFirstName: {
         title: "driverFirstName",
-        text: "Имя водителя*"
+        text: "Имя водителя"
     },
-    {
+    driverLastName: {
         title: "driverLastName",
-        text: "Фамилия водителя*"
+        text: "Фамилия водителя"
     },
-    {
+    fuelPerKm: {
         title: "fuelPerKm",
-        text: "Расход топлива на км*"
+        text: "Расход топлива на км"
     },
-    {
+    number: {
         title: "number",
-        text: "Марка автобуса*"
+        text: "Марка автобуса"
     }
-];
+};
 
-export const routeFormFields = [
-    {
+export const routeFormFields = {
+    distance: {
         title: "distance",
-        text: "Длина маршрута (дробные значения через точку)*"
+        text: "Длина маршрута (дробные значения указываются через точку)"
     },
-    {
+    needBusCount: {
         title: "needBusCount",
-        text: "Число автобусов на маршрут*"
+        text: "Число автобусов на маршрут"
     },
-    {
+    number: {
         title: "number",
-        text: "Номер маршрута*"
+        text: "Номер маршрута"
     }
-];
+};
 
 export const menuContentTitles = {
     routes: {
@@ -91,5 +91,7 @@ export const headers = {
     autoPark: "Автопарк",
     onRoute: "На маршруте",
     fuel: "Затраты топлива",
-    chooseRoute: "Выбрать маршрут"
+    chooseRoute: "Выбрать маршрут",
+    addBus: "Добавить автобус",
+    addRoute: "Добавить маршрут"
 }

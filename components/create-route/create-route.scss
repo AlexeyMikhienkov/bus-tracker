@@ -1,0 +1,85 @@
+$font-color: #44696e;
+$border-button-color: #6c9fa6;
+$success-message-color: #1f991d;
+$error-message-color: #e01b1b;
+
+.create-route {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  font-family: Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: $font-color;
+
+  &__response {
+    width: 70%;
+    text-align: center;
+  }
+
+  &__success-message {
+    margin-left: 20px;
+
+    font-weight: 700;
+    color: $success-message-color;
+  }
+
+  &__error-message {
+    margin-left: 20px;
+
+    font-weight: 700;
+    color: $error-message-color;
+  }
+
+  &__text {
+    margin-top: 0;
+    padding-top: 30px;
+  }
+
+  .form {
+    width: 60%;
+
+    margin-top: 20px;
+
+    border-radius: 10px;
+    border: 2px solid $border-button-color;
+
+
+    &__field {
+      text-align: center;
+
+      margin-top: 15px;
+    }
+
+    &__input {
+      width: 70%;
+
+      margin-top: 5px;
+    }
+
+    &__label {
+      text-align: left;
+    }
+
+    &__button {
+      padding: 0;
+
+      margin-top: 20px;
+      margin-bottom: 10px;
+
+      width: 60%;
+      height: 40px;
+
+      border-radius: 10px;
+      border: 2px solid $border-button-color;
+
+      color: $font-color;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: Tahoma, sans-serif;
+    }
+  }
+}

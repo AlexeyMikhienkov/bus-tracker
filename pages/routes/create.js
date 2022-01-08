@@ -3,6 +3,8 @@ import Wrapper from "../../components/wrapper/wrapper";
 import CreateBus from "../../components/create-bus/create-bus";
 import {put} from "../../utils/requests";
 import CreateRoute from "../../components/create-route/create-route";
+import Header from "../../components/header/header";
+import {headers} from "../../constants/constants";
 
 export default function CreateRoutePage() {
     const [errors, setErrors] = useState({});
@@ -48,6 +50,7 @@ export default function CreateRoutePage() {
 
     return (
         <Wrapper>
+            <Header headerTitle={headers.addRoute} />
             <CreateRoute onCreateRoute={createRoute} errors={errors} clicked={buttonClicked} className={"wrapper__create-route"}/>
         </Wrapper>
     )

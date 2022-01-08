@@ -2,6 +2,8 @@ import {useState} from "react";
 import Wrapper from "../../components/wrapper/wrapper";
 import CreateBus from "../../components/create-bus/create-bus";
 import {put} from "../../utils/requests";
+import {headers} from "../../constants/constants";
+import Header from "../../components/header/header";
 
 export default function CreateBusPage() {
     const [errors, setErrors] = useState({});
@@ -14,6 +16,8 @@ export default function CreateBusPage() {
             fuelPerKm,
             number
         }
+
+        console.log("!!")
 
         put('/bus', data)
             .then(() => {
@@ -48,6 +52,7 @@ export default function CreateBusPage() {
 
     return (
         <Wrapper>
+            <Header headerTitle={headers.addBus} />
             <CreateBus onCreateBus={createBus} errors={errors} clicked={buttonClicked} className={"wrapper__create-bus"}/>
         </Wrapper>
     )
