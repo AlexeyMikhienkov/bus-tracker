@@ -1,0 +1,42 @@
+$background-color: #97c4c9;
+$text-color: #ffffff;
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  background-color: $background-color;
+
+  font-family: Tahoma, sans-serif;
+  font-size: 32px;
+  font-weight: bolder;
+  color: $text-color;
+
+  &__button {
+    margin-left: 10px;
+
+    width: 80px;
+    height: 100%;
+
+    border: none;
+  }
+
+  &__image {
+    object-fit: contain;
+  }
+
+  &__title {
+    position: absolute;
+
+    text-align: center;
+    vertical-align: middle;
+
+    line-height: 70px;
+
+    &_without-button {
+      width: 100%;
+    }
+  }
+}

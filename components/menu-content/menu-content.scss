@@ -1,0 +1,23 @@
+$background-color: #ffffff;
+$text-color: #97c4c9;
+
+.menu-content {
+
+  &__link-wrapper {
+    text-align: center;
+    line-height: 75px;
+
+    border-radius: 10px;
+
+    background-color: $background-color;
+  }
+
+  &__link {
+    text-decoration: none;
+
+    font-family: Tahoma, serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: $text-color;
+  }
+}

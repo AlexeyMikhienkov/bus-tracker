@@ -22,3 +22,6 @@ export const search = "Найти";
 export const searchPlaceholder = "Введите фамилию водителя";
 
 export const totalConsumptions = "Общие затраты топлива: "
+
+export const menuTitle = "ГЛАВНОЕ МЕНЮ";
+export const altTextBack = "Назад";

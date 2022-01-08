@@ -8,7 +8,7 @@ export const busesTableHeader = [
 ];
 
 export const routesTableHeader = [
-  "Номер маршрута", "Протяженность", "Необходимое число автобусов"
+    "Номер маршрута", "Протяженность", "Необходимое число автобусов"
 ];
 
 export const checkFuelTableHeader = [
@@ -53,3 +53,26 @@ export const routeFormFields = [
         text: "Номер маршрута*"
     }
 ];
+
+export const menuContentTitles = {
+    routes: {
+        title: "Маршруты",
+        path: "/routes"
+    },
+    buses: {
+        title: "Все автобусы",
+        path: "/buses"
+    },
+    autoPark: {
+        title: "Автопарк",
+        path: "/park"
+    },
+    onRoute: {
+        title: "Автобусы на маршруте",
+        path: "/on-route"
+    },
+    consumption: {
+        title: "Затраты бензина",
+        path: "/check-fuel"
+    }
+}
