@@ -2,6 +2,8 @@ import Wrapper from "../../components/wrapper/wrapper";
 import ChooseRoute from "../../components/choose-route/choose-route";
 import {getWithParams, get, postWithParams} from "../../utils/requests";
 import {useRouter} from "next/router";
+import Header from "../../components/header/header";
+import {headers} from "../../constants/constants";
 
 export default function ChooseRoutePage({routes, bus}) {
     const router = useRouter();
@@ -18,28 +20,25 @@ export default function ChooseRoutePage({routes, bus}) {
             routeId: chosenRoute.id
         }
 
-        console.log("bus id ", busId, ", route id ", chosenRoute.id)
-
         postWithParams('/action/set-route', params)
             .then(res => {
                 console.log(res)
-/*                const response = await getWithParams('/bus', {limit: 10000})
-                const data = response.data;
 
-                setBuses(data);*/
+                router.push('/park');
             })
             .catch(({response}) => console.log(response))
     }
 
     return (
         <Wrapper>
+            <Header headerTitle={headers.chooseRoute} />
             <ChooseRoute className={"wrapper__choose-route"} onSetRoute={setRoute} bus={bus} routes={routes}/>
         </Wrapper>
     )
 }
 
 export async function getStaticPaths() {
-    const res = await get("/bus");
+    const res = await getWithParams('/bus', {limit: 10000});
     const buses = res.data;
 
     const paths = buses.map(bus => ({

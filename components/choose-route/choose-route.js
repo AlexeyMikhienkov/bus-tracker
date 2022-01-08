@@ -15,10 +15,12 @@ export default function ChooseRoute({routes, bus, onSetRoute, className}) {
 
     return (
         <div className={`${className} choose-route`}>
-            <p>{`${bus.id}, ${bus.driverLastName}`}</p>
+            <div className={"choose-route__info-container"}>
+                <p className={"choose-route__info"}>{`${bus.driverLastName} ${bus.driverFirstName}, ${bus.number}`}</p>
+            </div>
 
             <form className={"choose-route__form form"} onSubmit={submitFunc}>
-                <label className={"form__label"} htmlFor={title}>{text}</label><br/>
+                <label className={"form__label"} htmlFor={title}>{text}</label>
                 <select className={"form__select"} value={currentRouteNumber}
                         onChange={event => setCurrentRouteNumber(event.target.value)}>
                     {
@@ -26,11 +28,9 @@ export default function ChooseRoute({routes, bus, onSetRoute, className}) {
                             return <option key={route.id} value={route.number}>{route.number}</option>
                         })
                     }
-                </select>
-                <button type={"submit"}>{setToRouteText}</button>
+                </select><br />
+                <button className={"form__button"} type={"submit"}>{setToRouteText}</button>
             </form>
-
-
         </div>
     )
 }

@@ -11,6 +11,10 @@ export const autoParkTableHeader = [
     "Марка автобуса", "Водитель", "Расход топлива"
 ];
 
+export const onRouteTableHeader = [
+    "Марка автобуса", "Водитель", "Номер маршрута"
+];
+
 export const routesTableHeader = [
     "Номер маршрута", "Длина маршрута", "Необходимое число автобусов"
 ];
@@ -86,5 +90,6 @@ export const headers = {
     buses: "Автобусы",
     autoPark: "Автопарк",
     onRoute: "На маршруте",
-    fuel: "Затраты топлива"
+    fuel: "Затраты топлива",
+    chooseRoute: "Выбрать маршрут"
 }

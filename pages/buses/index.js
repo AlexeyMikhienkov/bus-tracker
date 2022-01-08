@@ -6,7 +6,7 @@ import Header from "../../components/header/header";
 import {busesHeader} from "../../constants/copyright";
 import {headers} from "../../constants/constants";
 
-export default function BusesPage({buses: serverBuses}) {
+export default function BusesPage({buses: serverBuses, routes}) {
     const [buses, setBuses] = useState(serverBuses);
 
     function deleteBus(busId) {
@@ -19,7 +19,6 @@ export default function BusesPage({buses: serverBuses}) {
             })
     }
 
-    //TODO: Сделать компонент и добавить в страницы "автопарк" и "на маршруте"
     function searchByLastName(lastName) {
         if (lastName)
             getWithParams('/bus/filter', {driverLastNameStartWith: lastName})
@@ -32,7 +31,7 @@ export default function BusesPage({buses: serverBuses}) {
     return (
         <Wrapper>
             <Header headerTitle={headers.buses} />
-            <Buses buses={buses} className={"wrapper__buses"} onDeleteBus={deleteBus}
+            <Buses buses={buses} routes={routes} className={"wrapper__buses"} onDeleteBus={deleteBus}
                    onSearchByLastName={searchByLastName}/>
         </Wrapper>
     )
@@ -47,9 +46,13 @@ export async function getStaticProps() {
     const resBuses = await getWithParams('/bus', params);
     const buses = resBuses.data;
 
+    const resRoutes = await getWithParams('/route', params);
+    const routes = resRoutes.data;
+
     return {
         props: {
-            buses
+            buses,
+            routes
         }
     }
 }

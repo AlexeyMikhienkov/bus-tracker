@@ -5,7 +5,7 @@ import OnRoute from "../../components/on-route/on-route";
 import Header from "../../components/header/header";
 import {headers} from "../../constants/constants";
 
-export default function BusesOnRoute({buses: serverBuses}) {
+export default function BusesOnRoute({buses: serverBuses, routes}) {
     const [buses, setBuses] = useState(serverBuses);
     const [busesOnRoute, setBusesOnRoute] = useState([]);
 
@@ -42,7 +42,7 @@ export default function BusesOnRoute({buses: serverBuses}) {
     return (
         <Wrapper>
             <Header headerTitle={headers.onRoute} />
-            <OnRoute buses={busesOnRoute} onSearchByLastName={searchByLastName} onDropRoute={dropRoute}
+            <OnRoute buses={busesOnRoute} routes={routes} onSearchByLastName={searchByLastName} onDropRoute={dropRoute}
                      className={'wrapper__on-route'} />
         </Wrapper>
     )
@@ -53,12 +53,16 @@ export async function getStaticProps() {
         limit: 10000
     }
 
-    const res = await getWithParams('/bus', params);
-    const buses = await res.data;
+    const resBuses = await getWithParams('/bus', params);
+    const buses = resBuses.data;
+
+    const resRoutes = await getWithParams('/route', params);
+    const routes = resRoutes.data;
 
     return {
         props: {
-            buses
+            buses,
+            routes
         }
     }
 }

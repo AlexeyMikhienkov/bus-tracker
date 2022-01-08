@@ -1,8 +1,9 @@
 import {busStatus} from "../../constants/constants";
 import {chooseRouteText, deleteBusText, dropFromRouteText} from "../../constants/copyright";
 import {useRouter} from "next/router";
+import getRouteNumber from "../../utils/getRouteNumber";
 
-export default function BusesTableBody({busesArray, onAction, type}) {
+export default function BusesTableBody({busesArray, routes, onAction, type}) {
     const router = useRouter();
 
     const tableButtonText = {
@@ -25,7 +26,7 @@ export default function BusesTableBody({busesArray, onAction, type}) {
                                 <p className={"table__item"}>{`${bus.driverLastName} ${bus.driverFirstName}`}</p>
                             </td>
                             <td className={"table__cell"}>
-                                <p className={"table__item"}>{bus.fuelPerKm}</p>
+                                <p className={"table__item"}>{type === "onRoute" ? getRouteNumber(routes, bus.routeId) : bus.fuelPerKm}</p>
                             </td>
                             {
                                 type === "all" ?
@@ -33,7 +34,7 @@ export default function BusesTableBody({busesArray, onAction, type}) {
                                         <td className={"table__cell"}>
                                             {
                                                 bus.routeId !== null ?
-                                                    <p className={"table__item"}>{`${busStatus.onRoute} ${bus.routeId}`}</p> :
+                                                    <p className={"table__item"}>{`${busStatus.onRoute} ${getRouteNumber(routes, bus.routeId)}`}</p> :
                                                     <p className={"table__item"}>{`${busStatus.inPark}`}</p>
                                             }
                                         </td>

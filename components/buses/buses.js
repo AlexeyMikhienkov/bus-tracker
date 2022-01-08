@@ -5,7 +5,7 @@ import AddButton from "../add-button/add-button";
 import BusesTableHeader from "../buses-table/buses-table-header";
 import BusesTableBody from "../buses-table/buses-table-body";
 
-export default function Buses({buses, className, onDeleteBus, onSearchByLastName}) {
+export default function Buses({buses, className, onDeleteBus, onSearchByLastName, routes}) {
     return (
         <div className={`${className} buses`}>
 
@@ -14,7 +14,7 @@ export default function Buses({buses, className, onDeleteBus, onSearchByLastName
 
             <table className={"buses__table table"}>
                 <BusesTableHeader header={busesTableHeader} />
-                <BusesTableBody busesArray={buses} onAction={onDeleteBus} type={"all"} />
+                <BusesTableBody busesArray={buses} routes={routes} onAction={onDeleteBus} type={"all"} />
             </table>
         </div>
     )

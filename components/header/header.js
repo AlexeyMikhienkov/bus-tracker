@@ -2,6 +2,7 @@ import Image from 'next/image';
 import {useRouter} from "next/router";
 import {altTextBack, menuTitle} from "../../constants/copyright";
 import backArrowPath from '../../public/images/back-left.png'
+import {headers} from "../../constants/constants";
 
 export default function Header({headerTitle}) {
     const router = useRouter();
@@ -13,7 +14,13 @@ export default function Header({headerTitle}) {
             </div>
             {
                 headerTitle !== menuTitle ?
-                    <button className={"header__button"} onClick={router.back}>
+                    <button className={"header__button"}
+                            onClick={() => {
+                                if (headerTitle === headers.autoPark)
+                                    router.push('/')
+                                else router.back();
+                            }}>
+
                         <Image className={"header__image"} src={backArrowPath} alt={altTextBack}/>
                     </button> :
                     null
