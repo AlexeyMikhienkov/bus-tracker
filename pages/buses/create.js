@@ -2,22 +2,33 @@ import {useState} from "react";
 import Wrapper from "../../components/wrapper/wrapper";
 import CreateBus from "../../components/create-bus/create-bus";
 import {put} from "../../utils/requests";
-import {headers} from "../../constants/constants";
+import {busFormFields, headers} from "../../constants/constants";
 import Header from "../../components/header/header";
+import {checkFloatNumberFieldValidation} from "../../utils/validations";
 
 export default function CreateBusPage() {
     const [errors, setErrors] = useState({});
     const [buttonClicked, setButtonClicked] = useState(false);
 
     function createBus(driverFirstName, driverLastName, fuelPerKm, number) {
+        if (!checkFloatNumberFieldValidation(fuelPerKm)) {
+            const error = {
+                field: busFormFields[fuelPerKm].title,
+                message: `Поле "${busFormFields[fuelPerKm].text}" не является целым числом или дробным числом, разделенным точкой`
+            }
+
+            setErrors([error]);
+            setButtonClicked(true);
+
+            return;
+        }
+
         const data = {
             driverFirstName,
             driverLastName,
             fuelPerKm,
             number
         }
-
-        console.log("!!")
 
         put('/bus', data)
             .then(() => {

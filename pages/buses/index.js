@@ -3,7 +3,6 @@ import Wrapper from "../../components/wrapper/wrapper";
 import Buses from "../../components/buses/buses";
 import {useState} from "react";
 import Header from "../../components/header/header";
-import {busesHeader} from "../../constants/copyright";
 import {headers} from "../../constants/constants";
 
 export default function BusesPage({buses: serverBuses, routes}) {

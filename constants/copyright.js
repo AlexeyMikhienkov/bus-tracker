@@ -25,3 +25,5 @@ export const totalConsumptions = "Общие затраты топлива: "
 
 export const menuTitle = "ГЛАВНОЕ МЕНЮ";
 export const altTextBack = "Назад";
+
+export const cantDeleteRoute = "Невозможно удалить маршрут, так как на нем еще находятся автобусы";

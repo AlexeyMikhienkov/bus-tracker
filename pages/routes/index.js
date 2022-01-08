@@ -10,17 +10,23 @@ export default function RoutesPage({routes: serverRoutes}) {
     const [checkingRouteId, setCheckingRouteId] = useState();
 
     const [routes, setRoutes] = useState(serverRoutes);
+    const [error, setError] = useState({});
 
     function deleteRoute(routeId) {
         del(`/route/${routeId}`, {
             id: routeId
         })
             .then((res) => {
-                console.log(res.data)
+                setError({});
                 setRoutes(routes.filter(route => route.id !== routeId))
             })
             .catch(({response}) => {
-                console.log("ОШИБКА УДАЛЕНИЯ", response)
+                if (response.status === 500) {
+                    setError({
+                        field: "default",
+                        message: response.message
+                    });
+                } else console.log("ИНАЯ ОШИБКА")
             })
     }
 
@@ -40,7 +46,7 @@ export default function RoutesPage({routes: serverRoutes}) {
     return (
         <Wrapper>
             <Header headerTitle={headers.routes} />
-                <Routes routes={routes} className={"wrapper__routes"} busSufficiency={busSufficiency}
+                <Routes routes={routes} error={error} className={"wrapper__routes"} busSufficiency={busSufficiency}
                         onDeleteRoute={deleteRoute} checkingRouteId={checkingRouteId}
                         onCheckSufficiency={checkSufficiency}/>
         </Wrapper>

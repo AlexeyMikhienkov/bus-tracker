@@ -50,7 +50,7 @@ export const busFormFields = {
 export const routeFormFields = {
     distance: {
         title: "distance",
-        text: "Длина маршрута (дробные значения указываются через точку)"
+        text: "Длина маршрута"
     },
     needBusCount: {
         title: "needBusCount",
