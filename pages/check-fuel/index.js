@@ -1,6 +1,6 @@
 import Wrapper from "../../components/wrapper/wrapper";
 import CheckFuel from "../../components/check-fuel/check-fuel";
-import {get} from "../../utils/requests";
+import {getRequest} from "../../utils/requests";
 import Header from "../../components/header/header";
 import {headers} from "../../constants/constants";
 
@@ -14,7 +14,7 @@ export default function CheckFuelPage({consumptions}) {
 }
 
 export async function getStaticProps() {
-    const res = await get('/action/fuel-consumption');
+    const res = await getRequest('/action/fuel-consumption');
     const consumptions = res.data;
 
     return {

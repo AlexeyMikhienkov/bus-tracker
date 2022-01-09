@@ -1,6 +1,6 @@
 import SearchForm from "../search-form/search-form";
 import BusesTableHeader from "../buses-table/buses-table-header";
-import {autoParkTableHeader, onRouteTableHeader} from "../../constants/constants";
+import {onRouteTableHeader} from "../../constants/constants";
 import BusesTableBody from "../buses-table/buses-table-body";
 
 export default function OnRoute({buses, routes, onSearchByLastName, className, onDropRoute}) {

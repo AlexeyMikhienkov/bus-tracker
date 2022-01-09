@@ -1,11 +1,11 @@
-import {getWithParams} from "../../utils/requests";
+import {getWithParamsRequest} from "../../utils/requests";
 import {useEffect, useState} from "react";
 import Wrapper from "../../components/wrapper/wrapper";
 import InPark from "../../components/in-park/in-park";
 import Header from "../../components/header/header";
 import {headers} from "../../constants/constants";
 
-export default function BusesInPark({buses: serverBuses}) {
+export default function BusesInPark({serverBuses}) {
     const [buses, setBuses] = useState(serverBuses);
     const [busesInPark, setBusesInPark] = useState([]);
 
@@ -17,7 +17,7 @@ export default function BusesInPark({buses: serverBuses}) {
 
     function searchByLastName(lastName) {
         if (lastName)
-            getWithParams('/bus/filter', {driverLastNameStartWith: lastName})
+            getWithParamsRequest('/bus/filter', {driverLastNameStartWith: lastName})
                 .then(res => setBuses(res.data))
                 .catch(({response}) => console.log(response));
         else
@@ -33,16 +33,12 @@ export default function BusesInPark({buses: serverBuses}) {
 }
 
 export async function getStaticProps() {
-    const params = {
-        limit: 10000
-    }
-
-    const resBuses = await getWithParams('/bus', params);
-    const buses = await resBuses.data;
+    const resBuses = await getWithParamsRequest('/bus', {limit: 10000});
+    const serverBuses = await resBuses.data;
 
     return {
         props: {
-            buses,
+            serverBuses
         }
     }
 }

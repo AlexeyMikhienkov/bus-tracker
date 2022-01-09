@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {addBusText, busCreatedSuccessful, routeCreatedSuccessful} from "../../constants/copyright";
+import {addBusText, busCreatedSuccessful} from "../../constants/copyright";
 import {busFormFields} from "../../constants/constants";
 import FormField from "../form-field/form-field";
 

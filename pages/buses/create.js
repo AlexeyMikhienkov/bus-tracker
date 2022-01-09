@@ -1,24 +1,24 @@
 import {useState} from "react";
 import Wrapper from "../../components/wrapper/wrapper";
 import CreateBus from "../../components/create-bus/create-bus";
-import {put} from "../../utils/requests";
+import {putRequest} from "../../utils/requests";
 import {busFormFields, headers} from "../../constants/constants";
 import Header from "../../components/header/header";
 import {checkFloatNumberFieldValidation} from "../../utils/validations";
 
 export default function CreateBusPage() {
     const [errors, setErrors] = useState({});
-    const [buttonClicked, setButtonClicked] = useState(false);
+    const [clicked, setClicked] = useState(false);
 
     function createBus(driverFirstName, driverLastName, fuelPerKm, number) {
         if (!checkFloatNumberFieldValidation(fuelPerKm)) {
             const error = {
-                field: busFormFields[fuelPerKm].title,
-                message: `Поле "${busFormFields[fuelPerKm].text}" не является целым числом или дробным числом, разделенным точкой`
+                field: busFormFields.fuelPerKm.title,
+                message: `Поле "${busFormFields.fuelPerKm.text}" не является целым числом или дробным числом, разделенным точкой`
             }
 
             setErrors([error]);
-            setButtonClicked(true);
+            setClicked(true);
 
             return;
         }
@@ -30,10 +30,10 @@ export default function CreateBusPage() {
             number
         }
 
-        put('/bus', data)
+        putRequest('/bus', data)
             .then(() => {
                 setErrors({});
-                setButtonClicked(true);
+                setClicked(true);
             })
             .catch(({response}) => {
                 if (response.status === 400) {
@@ -49,22 +49,22 @@ export default function CreateBusPage() {
                     })
 
                     setErrors(errors);
-                    setButtonClicked(true);
+                    setClicked(true);
                 } else if (response.status === 500) {
                     setErrors({
                         field: "default",
                         message: response.message
                     });
 
-                    setButtonClicked(true);
-                } else console.log("ИНАЯ ОШИБКА")
+                    setClicked(true);
+                } else console.log("Другая ошибка:", response.status)
             })
     }
 
     return (
         <Wrapper>
             <Header headerTitle={headers.addBus} />
-            <CreateBus onCreateBus={createBus} errors={errors} clicked={buttonClicked} className={"wrapper__create-bus"}/>
+            <CreateBus onCreateBus={createBus} errors={errors} clicked={clicked} className={"wrapper__create-bus"}/>
         </Wrapper>
     )
 }

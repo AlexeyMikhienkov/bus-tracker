@@ -1,4 +1,3 @@
-import {addBusText} from "../../constants/copyright";
 import {useRouter} from "next/router";
 
 export default function AddButton({text, path}) {
@@ -6,8 +5,8 @@ export default function AddButton({text, path}) {
 
     return (
         <div className={"add-button__container"}>
-            <button className={"add-button"}
-                    onClick={() => router.push(path)}>{text}
+            <button className={"add-button"} onClick={() => router.push(path)}>
+                {text}
             </button>
         </div>
     )

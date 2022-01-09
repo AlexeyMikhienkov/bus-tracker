@@ -1,11 +1,11 @@
 import Wrapper from "../../components/wrapper/wrapper";
-import {del, getWithParams} from "../../utils/requests";
+import {deleteRequest, getWithParamsRequest} from "../../utils/requests";
 import Routes from "../../components/routes/routes";
 import {useState} from "react";
 import Header from "../../components/header/header";
 import {headers} from "../../constants/constants";
 
-export default function RoutesPage({routes: serverRoutes}) {
+export default function RoutesPage({serverRoutes}) {
     const [busSufficiency, setBusSufficiency] = useState({});
     const [checkingRouteId, setCheckingRouteId] = useState();
 
@@ -13,7 +13,7 @@ export default function RoutesPage({routes: serverRoutes}) {
     const [error, setError] = useState({});
 
     function deleteRoute(routeId) {
-        del(`/route/${routeId}`, {
+        deleteRequest(`/route/${routeId}`, {
             id: routeId
         })
             .then((res) => {
@@ -26,7 +26,7 @@ export default function RoutesPage({routes: serverRoutes}) {
                         field: "default",
                         message: response.message
                     });
-                } else console.log("ИНАЯ ОШИБКА")
+                } else console.log("Другая ошибка", response.status)
             })
     }
 
@@ -54,16 +54,12 @@ export default function RoutesPage({routes: serverRoutes}) {
 }
 
 export async function getStaticProps() {
-    const params = {
-        limit: 10000
-    }
-
-    const res = await getWithParams('/route', params);
-    const routes = res.data;
+    const res = await getWithParamsRequest('/route', {limit: 10000});
+    const serverRoutes = res.data;
 
     return {
         props: {
-            routes
+            serverRoutes
         }
     }
 }

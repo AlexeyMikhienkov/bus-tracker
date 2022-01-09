@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = 'http://localhost:8080'
 
-export function put(endpoint, data = {}, headers = {}) {
+export function putRequest(endpoint, data = {}, headers = {}) {
     const config = {
         headers: {
             ...headers,
@@ -12,7 +12,7 @@ export function put(endpoint, data = {}, headers = {}) {
     return axios.put(API_URL + endpoint, data, config)
 }
 
-export function post(endpoint, data = {}, headers = {}) {
+export function postRequest(endpoint, data = {}, headers = {}) {
     const config = {
         headers: {
             ...headers,
@@ -22,7 +22,7 @@ export function post(endpoint, data = {}, headers = {}) {
     return axios.post(API_URL + endpoint, data, config)
 }
 
-export function postWithParams(endpoint, params = {}, headers = {}) {
+export function postWithParamsRequest(endpoint, params = {}, headers = {}) {
     const config = {
         headers: {
             ...headers
@@ -33,7 +33,7 @@ export function postWithParams(endpoint, params = {}, headers = {}) {
     return axios.post(API_URL + endpoint, null, config);
 }
 
-export function del(endpoint, data = {}, headers = {}) {
+export function deleteRequest(endpoint, data = {}, headers = {}) {
     const config = {
         headers: {
             ...headers,
@@ -44,7 +44,7 @@ export function del(endpoint, data = {}, headers = {}) {
     return axios.delete(API_URL + endpoint, config)
 }
 
-export function getWithParams(endpoint, params = {}, headers = {}) {
+export function getWithParamsRequest(endpoint, params = {}, headers = {}) {
     const config = {
         headers: {
             ...headers,
@@ -55,7 +55,7 @@ export function getWithParams(endpoint, params = {}, headers = {}) {
     return axios.get(API_URL + endpoint, config)
 }
 
-export function get(endpoint, data = {}, headers = {}) {
+export function getRequest(endpoint, data = {}, headers = {}) {
     const config = {
         headers: {
             ...headers,

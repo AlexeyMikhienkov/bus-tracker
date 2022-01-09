@@ -1,6 +1,6 @@
 import {useState} from "react";
 import Wrapper from "../../components/wrapper/wrapper";
-import {put} from "../../utils/requests";
+import {putRequest} from "../../utils/requests";
 import CreateRoute from "../../components/create-route/create-route";
 import Header from "../../components/header/header";
 import {headers, routeFormFields} from "../../constants/constants";
@@ -8,7 +8,7 @@ import {checkFloatNumberFieldValidation, checkIntNumberFieldValidation} from "..
 
 export default function CreateRoutePage() {
     const [errors, setErrors] = useState({});
-    const [buttonClicked, setButtonClicked] = useState(false);
+    const [clicked, setClicked] = useState(false);
 
     function createRoute(distance, needBusCount, number) {
         const paramErrors = [];
@@ -33,7 +33,7 @@ export default function CreateRoutePage() {
 
         if (paramErrors.length) {
             setErrors(paramErrors);
-            setButtonClicked(true);
+            setClicked(true);
 
             return;
         }
@@ -44,10 +44,10 @@ export default function CreateRoutePage() {
             number
         }
 
-        put('/route', data)
+        putRequest('/route', data)
             .then(() => {
                 setErrors({});
-                setButtonClicked(true);
+                setClicked(true);
             })
             .catch(({response}) => {
                 if (response.status === 400) {
@@ -63,22 +63,22 @@ export default function CreateRoutePage() {
                     })
 
                     setErrors(errors);
-                    setButtonClicked(true);
+                    setClicked(true);
                 } else if (response.status === 500) {
                     setErrors({
                         field: "default",
                         message: response.message
                     });
 
-                    setButtonClicked(true);
-                } else console.log("ИНАЯ ОШИБКА")
+                    setClicked(true);
+                } else console.log("Другая ошибка:", response.status)
             })
     }
 
     return (
         <Wrapper>
             <Header headerTitle={headers.addRoute}/>
-            <CreateRoute onCreateRoute={createRoute} errors={errors} clicked={buttonClicked}
+            <CreateRoute onCreateRoute={createRoute} errors={errors} clicked={clicked}
                          className={"wrapper__create-route"}/>
         </Wrapper>
     )
